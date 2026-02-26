@@ -40,3 +40,10 @@ Route::get('/pagos/registrar/{pension}', [PagoController::class, 'create']);
 Route::post('/pagos/guardar', [PagoController::class, 'store']);
 
 Route::get('/pagos/pdf/{id}', [PagoController::class, 'generarPDF']);
+
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/migrate-now', function () {
+    Artisan::call('migrate', ['--force' => true]);
+    return "Migraciones ejecutadas";
+});
